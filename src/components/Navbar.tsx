@@ -6,7 +6,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
          <Link to="/" className="flex items-center">
-            <img src="/lovable-uploads/ed8d4d38-dd9b-4174-957a-d79b3e8f4bcd.png" alt="Adiuvo Logo" className="h-10" />
+            <img src="/lovable-uploads/ed8d4d38-dd9b-4174-957a-d79b3e8f4bcd.png" alt="Adiuvo Logo" className="h-14" />
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
