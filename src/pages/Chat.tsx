@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
+import { send } from "process";
 
 interface ChatMessage {
   id: string;
@@ -13,7 +14,7 @@ interface ChatMessage {
 }
 
 const Chat = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<{sender: string; text: string}[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [previousChats] = useState([
     { id: '1', title: 'Wellness Discussion', date: '2024-03-10' },
@@ -21,18 +22,29 @@ const Chat = () => {
     { id: '3', title: 'Stress Management', date: '2024-03-08' },
   ]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
-
-    const newMessage: ChatMessage = {
-      id: Date.now().toString(),
-      content: inputMessage,
-      sender: 'user',
-      timestamp: new Date(),
+    try{
+      const response = await fetch('/diary', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([{ 
+        message: {
+          role: 'user',
+          content: inputMessage 
+        }
+        }]),
+      })
+      const data = await response.json();
+      const aiMessage = { sender: 'ai', text: data[0].message.content };
+      setMessages((prev) => [...prev, aiMessage]);
+    }  
+    catch (error: any) {
+      console.error('Error fetching AI response:', error);
     };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setInputMessage("");
+    
     
     // TODO: Implement AI response logic here
   };
@@ -68,9 +80,9 @@ const Chat = () => {
             {/* Chat Messages */}
             <ScrollArea className="flex-1 p-4">
               <div className="space-y-4">
-                {messages.map((message) => (
+                {messages.map((message, index) => (
                   <div
-                    key={message.id}
+                    key={index}
                     className={`flex ${
                       message.sender === 'user' ? 'justify-end' : 'justify-start'
                     }`}
@@ -82,7 +94,7 @@ const Chat = () => {
                           : 'bg-beige text-brown'
                       }`}
                     >
-                      {message.content}
+                      {message.text}
                     </div>
                   </div>
                 ))}
