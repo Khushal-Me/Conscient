@@ -24,19 +24,23 @@ const Index = () => {
                 Start Chat
               </Button>
             </Link>
-            <Link to="/connect">
+            <Link to="/diary">
               <Button variant="outline" className="border-deep-red text-deep-red hover:bg-deep-red hover:text-cream px-8 py-6 text-lg">
-                Connect Now
+                Open Diary
               </Button>
             </Link>
           </div>
         </div>
 
         {/* Features Section */}
-        <div className="grid md:grid-cols-3 gap-8 py-16">
+        <div className="grid md:grid-cols-4 gap-8 py-16">
           <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-bold text-deep-red mb-4">AI Chat Support</h3>
             <p className="text-brown">Get immediate support and guidance from our AI-powered chat system.</p>
+          </div>
+          <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold text-deep-red mb-4">Personal Diary</h3>
+            <p className="text-brown">Keep track of your thoughts and feelings with our private diary feature.</p>
           </div>
           <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-bold text-deep-red mb-4">Connect with Others</h3>

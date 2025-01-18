@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Chat from "./pages/Chat";
 import Connect from "./pages/Connect";
 import About from "./pages/About";
+import Diary from "./pages/Diary";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/chat" element={<Chat />} />
           <Route path="/connect" element={<Connect />} />
           <Route path="/about" element={<About />} />
+          <Route path="/diary" element={<Diary />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

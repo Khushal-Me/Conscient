@@ -11,7 +11,9 @@ const Navbar = () => {
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
+            <Link to="/diary" className="text-brown hover:text-deep-red transition-colors">Diary</Link>
             <Link to="/connect" className="text-brown hover:text-deep-red transition-colors">Connect</Link>
+            <Link to="/settings" className="text-brown hover:text-deep-red transition-colors">Settings</Link>
             <Link to="/about" className="text-brown hover:text-deep-red transition-colors">About</Link>
           </div>
           <button className="md:hidden text-brown">
