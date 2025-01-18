@@ -7,7 +7,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
             <img src="/lovable-uploads/ed8d4d38-dd9b-4174-957a-d79b3e8f4bcd.png" alt="Adiuvo Logo" className="h-10" />
-            <span className="text-2xl font-bold text-deep-red">Adiuvo</span>
+          <span className="text-2xl font-bold text-deep-red">Adiuvo</span>
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
