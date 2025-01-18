@@ -5,9 +5,8 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-cream/80 backdrop-blur-sm z-50 border-b border-beige">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
+         <Link to="/" className="flex items-center">
             <img src="/lovable-uploads/ed8d4d38-dd9b-4174-957a-d79b3e8f4bcd.png" alt="Adiuvo Logo" className="h-10" />
-          <span className="text-2xl font-bold text-deep-red">Adiuvo</span>
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
