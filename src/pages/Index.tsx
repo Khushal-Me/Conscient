@@ -29,6 +29,11 @@ const Index = () => {
                 Open Diary
               </Button>
             </Link>
+            <Link to="/connect">
+              <Button variant="outline" className="border-deep-red text-deep-red hover:bg-deep-red hover:text-cream px-8 py-6 text-lg">
+                Connect
+              </Button>
+            </Link>
           </div>
         </div>
 
