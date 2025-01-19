@@ -3,14 +3,21 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.info("Authentication will be implemented soon");
   };
+
+  const handleForgotPassword = () => {
+    toast.info("Password reset will be implemented soon");
+  };
+
   return (
     <div className="w-full min-h-screen bg-cream pt-24">
       <div className="max-w-md mx-auto px-4">
@@ -37,6 +44,15 @@ const Auth = () => {
                 className="w-full"
               />
             </div>
+            {isLogin && (
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="text-sm text-brown hover:text-deep-red text-left w-full"
+              >
+                Forgot Password?
+              </button>
+            )}
             <Button type="submit" className="w-full bg-deep-red hover:bg-brown">
               {isLogin ? "Sign In" : "Sign Up"}
             </Button>
@@ -54,4 +70,5 @@ const Auth = () => {
     </div>
   );
 };
+
 export default Auth;
