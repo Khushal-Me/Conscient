@@ -4,9 +4,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { BookOpen, Calendar } from "lucide-react";
+import { BookOpen, Calendar, InfoIcon } from "lucide-react";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 interface DiaryEntry {
   id: string;
@@ -87,9 +88,20 @@ const Diary = () => {
                   {selectedEntry ? selectedEntry.title : "New Diary Entry"}
                 </h2>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm text-brown/60">
-                    AI Access
-                  </span>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <div className="flex items-center gap-2 cursor-help">
+                        <span className="text-sm text-brown/60">AI Access</span>
+                        <InfoIcon className="h-4 w-4 text-brown/60" />
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm text-brown">
+                        When enabled, AI features will be activated to help analyze your diary entries,
+                        provide emotional insights, and suggest writing prompts based on your content.
+                      </p>
+                    </HoverCardContent>
+                  </HoverCard>
                   <Switch
                     checked={aiAccess}
                     onCheckedChange={handleAiAccessChange}
