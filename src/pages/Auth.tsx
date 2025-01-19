@@ -7,20 +7,34 @@ import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Set login state in localStorage for persistence
-    localStorage.setItem("isLoggedIn", "true");
-    toast.success("Successfully logged in!");
-    navigate("/");
-  };
+    try {
+        const response = await fetch(`http://localhost:4000/${isLogin ? 'login' : 'signup'}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
 
-  const handleForgotPassword = () => {
-    toast.info("Password reset will be implemented soon");
+        if (!response.ok) {
+            navigate('/login');
+        }
+        navigate('/');
+        const data = await response.json();
+        console.log("Data: " + data);
+        // Assuming the token is returned in the response
+        localStorage.setItem('token', data.token);
+        // Redirect or update the UI as needed
+        console.log('Login successful');
+    } catch (error) {
+        console.error('Error:', error);
+    }
   };
 
   return (
@@ -33,10 +47,10 @@ const Auth = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                placeholder="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="w-full"
               />
             </div>
@@ -49,15 +63,7 @@ const Auth = () => {
                 className="w-full"
               />
             </div>
-            {isLogin && (
-              <button
-                type="button"
-                onClick={handleForgotPassword}
-                className="text-sm text-brown hover:text-deep-red text-left w-full"
-              >
-                Forgot Password?
-              </button>
-            )}
+            {isLogin}
             <Button type="submit" className="w-full bg-deep-red hover:bg-brown">
               {isLogin ? "Sign In" : "Sign Up"}
             </Button>

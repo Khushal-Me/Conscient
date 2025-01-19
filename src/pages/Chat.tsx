@@ -4,56 +4,53 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-import { send } from "process";
 
-interface ChatMessage {
-  id: string;
-  content: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
-}
 
 const Chat = () => {
-  const [messages, setMessages] = useState<{sender: string; text: string}[]>([]);
-  const [inputMessage, setInputMessage] = useState("");
-  const [previousChats] = useState([
-    { id: '1', title: 'Wellness Discussion', date: '2024-03-10' },
-    { id: '2', title: 'Meditation Tips', date: '2024-03-09' },
-    { id: '3', title: 'Stress Management', date: '2024-03-08' },
-  ]);
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
+  const [input, setInput] = useState('');
 
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
-    try{
-      const response = await fetch('/diary', {
+  const handleSend = async () => {
+    if (!input.trim()) return; // Prevent empty messages
+
+    // Add the user's message to the chat
+    const userMessage = { sender: 'user', text: input };
+    setMessages((prev) => [...prev, userMessage]);
+
+    // Clear the input field
+    setInput('');
+
+    try {
+      // Send the user's message to the AI backend
+      const response = await fetch('http://localhost:5000/input', {
         method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
+        headers: { 'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
-        body: JSON.stringify([{ 
-        message: {
-          role: 'user',
-          content: inputMessage 
-        }
-        }]),
-      })
+        body: JSON.stringify([{ role: 'user', content: input }]),
+      });
+      console.log(response);
       const data = await response.json();
-      const aiMessage = { sender: 'ai', text: data[0].message.content };
+      console.log(data);
+
+      // Add the AI's response to the chat
+      const aiMessage = { sender: 'ai', text: data[0].response };
       setMessages((prev) => [...prev, aiMessage]);
-    }  
-    catch (error: any) {
-      console.error('Error fetching AI response:', error);
-    };
-    
-    
-    // TODO: Implement AI response logic here
+    } catch (error) {
+      console.error('Error communicating with AI:', error);
+      const errorMessage = {
+        sender: 'ai',
+        text: 'Sorry, there was an issue connecting to the AI. Please try again later.',
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    }
   };
 
   return (
     <div className="container mx-auto px-4 pt-24 min-h-screen bg-cream">
       <div className="grid grid-cols-12 gap-4 h-[calc(100vh-8rem)]">
         {/* Previous Chats Sidebar */}
-        <div className="col-span-3">
+        {/* <div className="col-span-3">
           <Card className="h-full bg-white/50 backdrop-blur-sm">
             <div className="p-4 border-b">
               <h2 className="text-lg font-semibold text-brown">Previous Chats</h2>
@@ -72,7 +69,7 @@ const Chat = () => {
               </div>
             </ScrollArea>
           </Card>
-        </div>
+        </div> */}
 
         {/* Main Chat Area */}
         <div className="col-span-9">
@@ -106,13 +103,13 @@ const Chat = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleSendMessage();
+                  handleSend();
                 }}
                 className="flex gap-2"
               >
                 <Input
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
                   placeholder="Type your message..."
                   className="flex-1"
                 />

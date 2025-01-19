@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { BookOpen, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 interface DiaryEntry {
-  id: string;
   title: string;
   content: string;
-  date: Date;
+  Date: Date;
 }
 
 const Diary = () => {
@@ -19,19 +19,54 @@ const Diary = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedEntry, setSelectedEntry] = useState<DiaryEntry | null>(null);
+  useEffect(() => {
+    try {
+      const pullEntries = async () => {
+        const response = await fetch("http://localhost:4000/journals", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token")!,
+          },
+        });
+        const data = await response.json();
+        console.log("Data 2 ", data);
+        setEntries(data);
+      };
+      pullEntries();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }, []);
 
-  const handleSaveEntry = () => {
+  const handleSaveEntry = async () => {
     if (!title.trim() || !content.trim()) {
       toast.error("Please fill in both title and content");
       return;
     }
 
     const newEntry: DiaryEntry = {
-      id: Date.now().toString(),
       title,
       content,
-      date: new Date(),
+      Date: new Date(),
     };
+
+    try {
+      const response = await fetch("http://localhost:4000/journals", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token")!,
+        },
+        body: JSON.stringify(newEntry),
+      });
+
+      if (!response.ok) {
+        console.log("Error:", response);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
 
     setEntries((prev) => [newEntry, ...prev]);
     setTitle("");
@@ -54,16 +89,18 @@ const Diary = () => {
               </div>
               <ScrollArea className="h-[calc(100%-4rem)]">
                 <div className="p-4 space-y-2">
-                  {entries.map((entry) => (
+                  {entries.map((entry, index) => (
                     <button
-                      key={entry.id}
+                      key={index}
                       onClick={() => setSelectedEntry(entry)}
                       className="w-full p-3 text-left rounded-lg hover:bg-beige/20 transition-colors"
                     >
-                      <p className="font-medium text-brown truncate">{entry.title}</p>
+                      <p className="font-medium text-brown truncate">
+                        {entry.title}
+                      </p>
                       <p className="text-sm text-brown/60 flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        {entry.date.toLocaleDateString()}
+                        {new Date(entry.Date).toLocaleDateString()}
                       </p>
                     </button>
                   ))}
@@ -77,11 +114,15 @@ const Diary = () => {
             <Card className="h-full bg-white/50 backdrop-blur-sm flex flex-col p-6">
               {selectedEntry ? (
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-deep-red">{selectedEntry.title}</h2>
-                  <p className="text-sm text-brown/60">
+                  <h2 className="text-2xl font-bold text-deep-red">
+                    {selectedEntry.title}
+                  </h2>
+                  {/* <p className="text-sm text-brown/60">
                     {selectedEntry.date.toLocaleDateString()}
+                  </p> */}
+                  <p className="text-brown whitespace-pre-wrap">
+                    {selectedEntry.content}
                   </p>
-                  <p className="text-brown whitespace-pre-wrap">{selectedEntry.content}</p>
                   <Button
                     onClick={() => setSelectedEntry(null)}
                     variant="outline"
@@ -92,7 +133,9 @@ const Diary = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-deep-red">New Diary Entry</h2>
+                  <h2 className="text-2xl font-bold text-deep-red">
+                    New Diary Entry
+                  </h2>
                   <Input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -105,7 +148,10 @@ const Diary = () => {
                     placeholder="Write your thoughts..."
                     className="w-full min-h-[300px]"
                   />
-                  <Button onClick={handleSaveEntry} className="bg-deep-red hover:bg-brown">
+                  <Button
+                    onClick={handleSaveEntry}
+                    className="bg-deep-red hover:bg-brown"
+                  >
                     Save Entry
                   </Button>
                 </div>
