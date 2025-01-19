@@ -8,7 +8,7 @@ const Index = () => {
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center space-y-8 py-16">
           <img 
-            src="/lovable-uploads/0345c930-2de1-49b9-a127-a598a3e1dd06.png" 
+            src="/lovable-uploads/938964b4-2753-4dca-85b4-a389d246d96c.png" 
             alt="Conscient Logo" 
             className="w-64 h-48 object-contain"
             loading="eager"

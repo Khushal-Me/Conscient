@@ -6,7 +6,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
          <Link to="/" className="flex items-center">
-         <img src="/lovable-uploads/0345c930-2de1-49b9-a127-a598a3e1dd06.png" alt="Conscient Logo" className="h-14" />
+         <img 
+              src="/lovable-uploads/938964b4-2753-4dca-85b4-a389d246d96c.png" 
+              alt="Conscient Logo" 
+              className="h-14" 
+              loading="eager"
+              fetchPriority="high"
+            />
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
