@@ -97,8 +97,7 @@ const Diary = () => {
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm text-brown">
-                      Your personal diary companion that understands the emotions behind your words. When enabled, it helps you reflect on your feelings and experiences, offering gentle insights while keeping your thoughts completely private and secure.
-                      </p>
+                      This is your personal diary that you're free to write entries in. When this AI access is turned on, it helps reflect on your feelings and experiences, offering gentle insights while keeping your thoughts private and secure.                      </p>
                     </HoverCardContent>
                   </HoverCard>
                   <Switch
