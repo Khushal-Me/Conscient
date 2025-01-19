@@ -1,69 +1,110 @@
-# Welcome to your Lovable project
+# Conscient 🧠
 
-## Project info
+An AI-powered mental health support platform combining intelligent conversation, mood tracking, and community connection. Built with React and powered by advanced AI models, Conscient provides a safe space for mental health support.
 
-**URL**: https://lovable.dev/projects/dc4b1989-a6b0-4c6a-b9c1-984a319ee41a
+## 🌟 Features
 
-## How can I edit this code?
+- **AI Therapy Companion**: Engage in supportive conversations with our self-learning AI model
+- **Smart Diary**: Keep track of your thoughts and emotions with AI-powered insights
+- **Peer Connection**: Connect with others based on AI-determined compatibility
+- **Secure Environment**: Username/password authentication with encrypted data storage
 
-There are several ways of editing your application.
+## 🚀 Tech Stack
 
-**Use Lovable**
+### Frontend
+- React.js
+- Tailwind CSS
+- Shadcn/UI components
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dc4b1989-a6b0-4c6a-b9c1-984a319ee41a) and start prompting.
+### Backend & AI
+- MongoDB Atlas for data storage
+- Groq API integration
+- Llama 3.3 Versatile-Versatile model
+- Random Forest classifier (trained on Kaggle mental health dataset)
+- Regression model for pattern analysis
 
-Changes made via Lovable will be committed automatically to this repo.
+## 💾 Database Structure
 
-**Use your preferred IDE**
+MongoDB Atlas collections:
+- Users
+- Chat histories
+- Diary entries
+- User interactions
+- Model learning patterns
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+```bash
+git clone https://github.com/Khushal-Me/Conscient.git
+cd Conscient
+```
 
-Follow these steps:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+3. Create a `.env` file in the root directory:
+```env
+MONGODB_URI=your_mongodb_uri
+GROQ_API_KEY=your_groq_api_key
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🤖 AI Implementation
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Self-Learning Model
+- Adapts to user interaction patterns
+- Stores learned patterns in MongoDB
+- Continuous improvement through user conversations
 
-**Use GitHub Codespaces**
+### Data Processing
+- Kaggle dataset integration for initial model training
+- Real-time pattern recognition
+- Secure data handling and anonymization
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🔒 Security Features
 
-## What technologies are used for this project?
+- Username/password authentication
+- Encrypted data storage
+- Secure API communications
+- Protected user matching system
 
-This project is built with .
+## 🔄 API Integration
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Groq API for AI model interactions
+- Rate limiting for API calls
+- Error handling and fallback strategies
 
-## How can I deploy this project?
+## 🚀 Future Deployments
 
-Simply open [Lovable](https://lovable.dev/projects/dc4b1989-a6b0-4c6a-b9c1-984a319ee41a) and click on Share -> Publish.
+Planned deployment on Vercel for:
+- Scalable infrastructure
+- Automatic deployments
+- Performance optimization
 
-## I want to use a custom domain - is that possible?
+## 🤝 Contributing
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add YourFeature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Khushal-Me/Conscient)
+- [Report Issues](https://github.com/Khushal-Me/Conscient/issues)
+
+---
+
+Built with ❤️ for better mental health support | [Report an Issue](https://github.com/Khushal-Me/Conscient/issues)
