@@ -97,8 +97,7 @@ const Diary = () => {
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm text-brown">
-                        When enabled, AI features will be activated to help analyze your diary entries,
-                        provide emotional insights, and suggest writing prompts based on your content.
+                      Your personal diary companion that understands the emotions behind your words. When enabled, it helps you reflect on your feelings and experiences, offering gentle insights while keeping your thoughts completely private and secure.
                       </p>
                     </HoverCardContent>
                   </HoverCard>
