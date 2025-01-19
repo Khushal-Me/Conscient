@@ -9,7 +9,6 @@ import Chat from "./pages/Chat";
 import Connect from "./pages/Connect";
 import About from "./pages/About";
 import Diary from "./pages/Diary";
-import Settings from "./pages/Settings";
 import Auth from "./pages/Auth";
 
 const queryClient = new QueryClient();
@@ -27,7 +26,6 @@ const App = () => (
           <Route path="/connect" element={<Connect />} />
           <Route path="/about" element={<About />} />
           <Route path="/diary" element={<Diary />} />
-          <Route path="/settings" element={<Settings />} />
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </BrowserRouter>

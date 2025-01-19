@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { BookOpen, Calendar } from "lucide-react";
 import { toast } from "sonner";
+import { Switch } from "@/components/ui/switch";
 
 interface DiaryEntry {
   id: string;
@@ -19,6 +20,7 @@ const Diary = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedEntry, setSelectedEntry] = useState<DiaryEntry | null>(null);
+  const [aiAccess, setAiAccess] = useState(false);
 
   const handleSaveEntry = () => {
     if (!title.trim() || !content.trim()) {
@@ -37,6 +39,11 @@ const Diary = () => {
     setTitle("");
     setContent("");
     toast.success("Diary entry saved");
+  };
+
+  const handleAiAccessChange = (checked: boolean) => {
+    setAiAccess(checked);
+    toast.success(`AI access ${checked ? 'enabled' : 'disabled'}`);
   };
 
   return (
@@ -75,9 +82,24 @@ const Diary = () => {
           {/* Main Content Area */}
           <div className="col-span-12 md:col-span-9">
             <Card className="h-full bg-white/50 backdrop-blur-sm flex flex-col p-6">
+              <div className="mb-6 flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-deep-red">
+                  {selectedEntry ? selectedEntry.title : "New Diary Entry"}
+                </h2>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-brown/60">
+                    AI Access
+                  </span>
+                  <Switch
+                    checked={aiAccess}
+                    onCheckedChange={handleAiAccessChange}
+                    className="data-[state=checked]:bg-deep-red"
+                  />
+                </div>
+              </div>
+
               {selectedEntry ? (
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-deep-red">{selectedEntry.title}</h2>
                   <p className="text-sm text-brown/60">
                     {selectedEntry.date.toLocaleDateString()}
                   </p>
@@ -92,7 +114,6 @@ const Diary = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-deep-red">New Diary Entry</h2>
                   <Input
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -117,4 +138,5 @@ const Diary = () => {
     </div>
   );
 };
+
 export default Diary;
