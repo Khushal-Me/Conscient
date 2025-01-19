@@ -1,12 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check login status on mount and when localStorage changes
+    const checkLoginStatus = () => {
+      const loginStatus = localStorage.getItem("isLoggedIn") === "true";
+      setIsLoggedIn(loginStatus);
+    };
+
+    window.addEventListener("storage", checkLoginStatus);
+    checkLoginStatus();
+
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+    toast.success("Successfully logged out!");
+    navigate("/");
+  };
+
   return (
     <nav className="fixed top-0 w-full bg-cream/80 backdrop-blur-sm z-50 border-b border-beige">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-         <Link to="/" className="flex items-center">
-         <img 
+          <Link to="/" className="flex items-center">
+            <img 
               src="/lovable-uploads/938964b4-2753-4dca-85b4-a389d246d96c.png" 
               alt="Conscient Logo" 
               className="h-14" 
@@ -21,12 +48,21 @@ const Navbar = () => {
             <Link to="/settings" className="text-brown hover:text-deep-red transition-colors">Settings</Link>
             <Link to="/about" className="text-brown hover:text-deep-red transition-colors">About</Link>
             <div className="flex items-center space-x-4">
-              <Link 
-                to="/auth" 
-                className="px-4 py-2 rounded-md bg-white text-deep-red hover:bg-beige transition-colors"
-              >
-                Sign In
-              </Link>
+              {isLoggedIn ? (
+                <button 
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-md bg-deep-red text-white hover:bg-brown transition-colors"
+                >
+                  Log Out
+                </button>
+              ) : (
+                <Link 
+                  to="/auth" 
+                  className="px-4 py-2 rounded-md bg-white text-deep-red hover:bg-beige transition-colors"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </div>
           <button className="md:hidden text-brown">

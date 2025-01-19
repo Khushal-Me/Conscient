@@ -3,49 +3,25 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // This is a temporary simulation of auth state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoggedIn(true);
-    toast.info("Authentication will be implemented soon");
+    // Set login state in localStorage for persistence
+    localStorage.setItem("isLoggedIn", "true");
+    toast.success("Successfully logged in!");
+    navigate("/");
   };
 
   const handleForgotPassword = () => {
     toast.info("Password reset will be implemented soon");
   };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    toast.success("Logged out successfully");
-  };
-
-  if (isLoggedIn) {
-    return (
-      <div className="w-full min-h-screen bg-cream pt-24">
-        <div className="max-w-md mx-auto px-4">
-          <Card className="p-6 bg-white/50 backdrop-blur-sm">
-            <h1 className="text-2xl font-bold text-deep-red mb-6 text-center">
-              Welcome Back
-            </h1>
-            <p className="text-center text-brown mb-4">You are logged in!</p>
-            <Button 
-              onClick={handleLogout} 
-              className="w-full bg-deep-red hover:bg-brown"
-            >
-              Log Out
-            </Button>
-          </Card>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="w-full min-h-screen bg-cream pt-24">
