@@ -10,7 +10,7 @@ const Index = () => {
           <img 
             src="/lovable-uploads/0345c930-2de1-49b9-a127-a598a3e1dd06.png" 
             alt="Conscient Logo" 
-            className="w-48 h-48"
+            className="w-64 h-48 object-contain" 
           />
           <h1 className="text-5xl md:text-6xl font-bold text-deep-red">
             Welcome to Conscient
@@ -19,6 +19,11 @@ const Index = () => {
             Your AI-powered wellness companion. Connect, share, and grow with our supportive community and intelligent chat system.
           </p>
           <div className="flex flex-col md:flex-row gap-6 mt-8">
+          <Link to="/chat">
+              <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
+                Start Chat
+              </Button>
+            </Link>
             <Link to="/diary">
             <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
                 Open Diary
