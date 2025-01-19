@@ -20,17 +20,17 @@ const Index = () => {
           </p>
           <div className="flex flex-col md:flex-row gap-6 mt-8">
           <Link to="/chat">
-              <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
+          <Button className="bg-deep-red hover:bg-deep-red/80 text-cream px-12 py-8 text-xl w-64">
                 Start Chat
               </Button>
             </Link>
             <Link to="/diary">
-            <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
+            <Button className="bg-deep-red hover:bg-deep-red/80 text-cream px-12 py-8 text-xl w-64">
                 Open Diary
               </Button>
             </Link>
             <Link to="/connect">
-            <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
+            <Button className="bg-deep-red hover:bg-deep-red/80 text-cream px-12 py-8 text-xl w-64">
                 Connect
               </Button>
             </Link>
