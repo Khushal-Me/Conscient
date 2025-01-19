@@ -7,17 +7,19 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check login status on mount and when localStorage changes
+    // Check login status immediately and set up interval to check periodically
     const checkLoginStatus = () => {
       const loginStatus = localStorage.getItem("isLoggedIn") === "true";
       setIsLoggedIn(loginStatus);
     };
-
-    window.addEventListener("storage", checkLoginStatus);
+    // Check immediately on mount
     checkLoginStatus();
 
+    // Set up interval to check periodically
+    const interval = setInterval(checkLoginStatus, 1000);
+
     return () => {
-      window.removeEventListener("storage", checkLoginStatus);
+      clearInterval(interval);
     };
   }, []);
 
