@@ -3,13 +3,13 @@ import { Card } from "@/components/ui/card";
 const About = () => {
   return (
     <div className="container mx-auto px-4 pt-24 min-h-screen bg-cream">
-      <h1 className="text-4xl font-bold text-brown mb-8">About Adiuvo</h1>
+      <h1 className="text-4xl font-bold text-brown mb-8">About Conscient</h1>
       <div className="space-y-6">
         <Card className="p-6 bg-white/50 backdrop-blur-sm">
           <h2 className="text-2xl font-semibold text-brown mb-4">Our Mission</h2>
           <div className="space-y-4 text-brown">
             <p>
-              Adiuvo is an AI-powered wellness platform created during uOttaHack 7, designed to revolutionize 
+            Conscient is an AI-powered wellness platform created during uOttaHack 7, designed to revolutionize 
               how people connect, share, and support each other through their mental health journeys. Our mission 
               is to make mental wellness support accessible to everyone through the innovative combination of 
               technology and human connection.
@@ -60,7 +60,7 @@ const About = () => {
           <h2 className="text-2xl font-semibold text-brown mb-4">Our Story</h2>
           <div className="space-y-4 text-brown">
             <p>
-              Born at uOttaHack 7, Adiuvo emerged from a shared vision to leverage technology for mental 
+              Born at uOttaHack 7, Conscient emerged from a shared vision to leverage technology for mental 
               wellness support. Our team recognized the growing need for accessible mental health resources 
               and the power of community support, leading to the creation of this innovative platform.
             </p>
