@@ -4,9 +4,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { BookOpen, Calendar } from "lucide-react";
+import { BookOpen, Calendar, InfoIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { Switch } from "@/components/ui/switch";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 interface DiaryEntry {
   title: string;
@@ -112,6 +114,31 @@ const Diary = () => {
           {/* Main Content Area */}
           <div className="col-span-12 md:col-span-9">
             <Card className="h-full bg-white/50 backdrop-blur-sm flex flex-col p-6">
+              <div className="mb-6 flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-deep-red">
+                  {selectedEntry ? selectedEntry.title : "New Diary Entry"}
+                </h2>
+                <div className="flex items-center gap-3">
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <div className="flex items-center gap-2 cursor-help">
+                        <span className="text-sm text-brown/60">AI Access</span>
+                        <InfoIcon className="h-4 w-4 text-brown/60" />
+                      </div>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm text-brown">
+                      This is your personal diary that you're free to write entries in. When this AI access is turned on, it helps reflect on your feelings and experiences, offering gentle insights while keeping your thoughts private and secure.                      </p>
+                    </HoverCardContent>
+                  </HoverCard>
+                  <Switch
+                    checked={aiAccess}
+                    onCheckedChange={handleAiAccessChange}
+                    className="data-[state=checked]:bg-deep-red"
+                  />
+                </div>
+              </div>
+
               {selectedEntry ? (
                 <div className="space-y-4">
                   <h2 className="text-2xl font-bold text-deep-red">
@@ -163,4 +190,5 @@ const Diary = () => {
     </div>
   );
 };
+
 export default Diary;

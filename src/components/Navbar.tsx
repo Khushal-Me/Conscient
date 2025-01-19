@@ -47,7 +47,6 @@ const Navbar = () => {
             <Link to="/chat" className="text-brown hover:text-deep-red transition-colors">AI Chat</Link>
             <Link to="/diary" className="text-brown hover:text-deep-red transition-colors">Diary</Link>
             <Link to="/connect" className="text-brown hover:text-deep-red transition-colors">Connect</Link>
-            <Link to="/settings" className="text-brown hover:text-deep-red transition-colors">Settings</Link>
             <Link to="/about" className="text-brown hover:text-deep-red transition-colors">About</Link>
             <div className="flex items-center space-x-4">
               {isLoggedIn ? (
