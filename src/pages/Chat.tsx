@@ -5,42 +5,44 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 
-
 const Chat = () => {
-  const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
-  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
+    []
+  );
+  const [input, setInput] = useState("");
 
   const handleSend = async () => {
     if (!input.trim()) return; // Prevent empty messages
 
     // Add the user's message to the chat
-    const userMessage = { sender: 'user', text: input };
+    const userMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
 
     // Clear the input field
-    setInput('');
+    setInput("");
 
     try {
       // Send the user's message to the AI backend
-      const response = await fetch('http://localhost:5000/input', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+      const response = await fetch("http://localhost:5000/input", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify([{ role: 'user', content: input }]),
+        body: JSON.stringify({ role: "user", content: input }),
       });
       console.log(response);
       const data = await response.json();
       console.log(data);
 
       // Add the AI's response to the chat
-      const aiMessage = { sender: 'ai', text: data[0].response };
+      const aiMessage = { sender: "ai", text: data[0].response };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error('Error communicating with AI:', error);
+      console.error("Error communicating with AI:", error);
       const errorMessage = {
-        sender: 'ai',
-        text: 'Sorry, there was an issue connecting to the AI. Please try again later.',
+        sender: "ai",
+        text: "Sorry, there was an issue connecting to the AI. Please try again later.",
       };
       setMessages((prev) => [...prev, errorMessage]);
     }
@@ -81,14 +83,16 @@ const Chat = () => {
                   <div
                     key={index}
                     className={`flex ${
-                      message.sender === 'user' ? 'justify-end' : 'justify-start'
+                      message.sender === "user"
+                        ? "justify-end"
+                        : "justify-start"
                     }`}
                   >
                     <div
                       className={`max-w-[70%] rounded-lg p-3 ${
-                        message.sender === 'user'
-                          ? 'bg-deep-red text-white'
-                          : 'bg-beige text-brown'
+                        message.sender === "user"
+                          ? "bg-deep-red text-white"
+                          : "bg-beige text-brown"
                       }`}
                     >
                       {message.text}

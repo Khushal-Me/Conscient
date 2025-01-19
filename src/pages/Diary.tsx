@@ -115,9 +115,9 @@ const Diary = () => {
           <div className="col-span-12 md:col-span-9">
             <Card className="h-full bg-white/50 backdrop-blur-sm flex flex-col p-6">
               <div className="mb-6 flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-deep-red">
+                {/* <h2 className="text-2xl font-bold text-deep-red">
                   {selectedEntry ? selectedEntry.title : "New Diary Entry"}
-                </h2>
+                </h2> */}
                 <div className="flex items-center gap-3">
                   <HoverCard>
                     <HoverCardTrigger asChild>
@@ -131,11 +131,6 @@ const Diary = () => {
                       This is your personal diary that you're free to write entries in. When this AI access is turned on, it helps reflect on your feelings and experiences, offering gentle insights while keeping your thoughts private and secure.                      </p>
                     </HoverCardContent>
                   </HoverCard>
-                  <Switch
-                    checked={aiAccess}
-                    onCheckedChange={handleAiAccessChange}
-                    className="data-[state=checked]:bg-deep-red"
-                  />
                 </div>
               </div>
 
