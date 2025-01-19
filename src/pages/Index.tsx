@@ -8,29 +8,24 @@ const Index = () => {
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center space-y-8 py-16">
           <img 
-            src="/lovable-uploads/ed8d4d38-dd9b-4174-957a-d79b3e8f4bcd.png" 
-            alt="Adiuvo Logo" 
-            className="w-32 h-32 animate-float"
+            src="/lovable-uploads/0345c930-2de1-49b9-a127-a598a3e1dd06.png" 
+            alt="Conscient Logo" 
+            className="w-48 h-48"
           />
           <h1 className="text-5xl md:text-6xl font-bold text-deep-red">
-            Welcome to Adiuvo
+            Welcome to Conscient
           </h1>
           <p className="text-xl text-brown max-w-2xl">
             Your AI-powered wellness companion. Connect, share, and grow with our supportive community and intelligent chat system.
           </p>
-          <div className="flex flex-col md:flex-row gap-4">
-            <Link to="/chat">
-              <Button className="bg-deep-red hover:bg-brown text-cream px-8 py-6 text-lg">
-                Start Chat
-              </Button>
-            </Link>
+          <div className="flex flex-col md:flex-row gap-6 mt-8">
             <Link to="/diary">
-              <Button variant="outline" className="border-deep-red text-deep-red hover:bg-deep-red hover:text-cream px-8 py-6 text-lg">
+            <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
                 Open Diary
               </Button>
             </Link>
             <Link to="/connect">
-              <Button variant="outline" className="border-deep-red text-deep-red hover:bg-deep-red hover:text-cream px-8 py-6 text-lg">
+            <Button className="bg-deep-red hover:bg-brown text-cream px-12 py-8 text-xl w-64">
                 Connect
               </Button>
             </Link>
