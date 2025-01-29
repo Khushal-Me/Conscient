@@ -1,6 +1,8 @@
 # Conscient 🧠
 
-An AI-powered mental health support platform combining intelligent conversation, mood tracking, and community connection. Built with React and powered by advanced AI models, Conscient provides a safe space for mental health support.
+Conscient is an AI-powered mental health support platform that combines intelligent conversation, mood tracking, and community connection. Built with React and powered by advanced AI models, It provides a safe space for mental health support.
+
+[▶️ Watch the Conscient Demo Video](https://www.youtube.com/watch?v=dE0HKtUL-vY)
 
 ## 🌟 Features
 
